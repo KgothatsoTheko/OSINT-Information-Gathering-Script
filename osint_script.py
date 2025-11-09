@@ -8,7 +8,8 @@ import dns.resolver
 print("=== OSINT Script ===")
 domain = input("Enter a domain (example: example.com): ").strip()
 
-# ---- WHOIS INFO ----
+# WHOIS INFO 
+#
 print("\n--- WHOIS Information ---")
 try:
     info = whois.whois(domain)
@@ -18,7 +19,8 @@ try:
 except Exception as e:
     print("WHOIS lookup failed:", e)
 
-# ---- DNS RECORDS ----
+# DNS RECORDS Information
+#
 print("\n--- DNS Records ---")
 record_types = ["A", "MX", "NS", "TXT"]
 
@@ -31,4 +33,4 @@ for record in record_types:
     except Exception:
         print(f"{record}: No record found")
 
-print("\n[✓] Done!")
+print("\n All Done!")
