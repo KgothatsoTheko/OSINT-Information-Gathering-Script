@@ -4,6 +4,7 @@
 # whois - look up IP addresses for domain names.
 import os
 import socket
+import dns.resolver
 import whois
 
 # Function to test ping
@@ -22,14 +23,35 @@ def whois_lookup():
     except Exception as e:
         print("Error running whois:", e)
 
-# Function to do a DNS Lookup
-def dns_lookup():
-    domain = input("Enter domain for DNS lookup: ")
+# Function to do a DNS records Lookup
+def show_dns_records():
+    domain = input("Enter domain to show DNS records: ")
+    record_types = ["A", "AAAA", "CNAME", "MX", "NS", "TXT", "SOA"]
+
+    for rtype in record_types:
+        print(f"\n=== {rtype} Records ===")
+        try:
+            answers = dns.resolver.resolve(domain, rtype)
+            for rdata in answers:
+                print(rdata)
+        except Exception as e:
+            print(f"No {rtype} record found or lookup failed.")
+
+# Function to do an NSLookup-style lookup
+def ns_lookup():
+    domain = input("Enter domain for nslookup: ")
     try:
-        ip = socket.gethostbyname(domain)
-        print(f"The IP address of {domain} is {ip}")
-    except socket.gaierror:
-        print("Invalid domain name or lookup failed.")
+        hostname, aliases, addresses = socket.gethostbyname_ex(domain)
+        print(f"Official name: {hostname}")
+        if aliases:
+            print("Aliases:")
+            for a in aliases:
+                print(" -", a)
+        print("IP Addresses:")
+        for addr in addresses:
+            print(" -", addr)
+    except Exception as e:
+        print("NSLookup failed:", e)
 
 # Main start of code (Menu)
 def main():
@@ -37,6 +59,7 @@ def main():
     print("1. Ping Test")
     print("2. Whois Lookup")
     print("3. DNS Lookup")
+    print("4. NSLookup")
 
     choice = input("Enter your choice (1/2/3): ")
 
@@ -45,7 +68,9 @@ def main():
     elif choice == '2':
         whois_lookup()
     elif choice == '3':
-        dns_lookup()
+        show_dns_records()
+    elif choice == '4':
+        ns_lookup()
     else:
         print("Invalid choice. Please select 1, 2, or 3.")
 
