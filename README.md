@@ -1,22 +1,26 @@
-# 🕵️‍♂️ OSINT Information Gathering Script
+# OSINT Information Gathering Script
 
 A Python-based information-gathering tool built as part of the **MetBrains Cyber Security Applied Mentorship Program (CAMP)**.  
 This project demonstrates how **Open Source Intelligence (OSINT)** techniques can be used to ethically gather publicly available information about a domain.
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This script combines several OSINT and network diagnostic functions into one easy-to-use Python tool.  
 It allows users to retrieve domain details, DNS records, WHOIS information, and perform basic connectivity checks.
 
 The project was developed collaboratively by our team under the guidance of **Dimple Chauhan** as part of our CAMP training.
 
-https://github.com/user-attachments/assets/00c0d9c5-bf4e-4a3f-baa9-516b2d76748c
+
+
+https://github.com/user-attachments/assets/63724077-f178-4a20-a98d-f79b41143189
+
+
 
 ---
 
-## 🛠️ Features
+## Features
 
 ### **1. Ping Test**
 Check if a host is reachable by sending ICMP echo requests.
@@ -55,5 +59,3 @@ pip install python-whois dnspython
 ### **2. Run the Script**
 ```bash
 python osint_script.py
-## 📂 Project Structure
-
